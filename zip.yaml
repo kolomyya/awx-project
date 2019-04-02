@@ -2,14 +2,11 @@
 - name: Do something
   hosts: all
   tasks:
-    - name: find
-      find:
+    - name: archive
+      archive:
         path: :"/tmp/"
         age: "90d"
         file_type: directory
       register: dirsOlderThan90d
-    - name: archive
-      archive: 
-        path: "{{ item.path}}"
-        format: zip
+        format: zip  
       
