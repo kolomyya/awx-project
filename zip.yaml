@@ -6,7 +6,6 @@
       find:
         path: :"tmp"
         age: "90d"
-      register: dirsOlderThan90d  
 - name: archive
   archive: 
     path: "{{ item.path}}"
