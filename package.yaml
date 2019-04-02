@@ -13,4 +13,9 @@
     - name: Install in ubuntu
       when: ansible_os_family == "Ubuntu"
       apt:
-        name: ['telnet','vim','tree']
+        name: "{{ packages}}"
+      vars:
+        packages:
+        - vim
+        - tree
+        - telnet
