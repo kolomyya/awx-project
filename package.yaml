@@ -8,8 +8,8 @@
       with_items:
         - telnet
         - vim
-        - tree  
-      state: present
+        - tree 
+        
     - name: Install in ubuntu
       when: ansible_os_family == "Ubuntu"
       package:
@@ -18,4 +18,3 @@
         - telnet
         - vim
         - tree  
-      state: present
