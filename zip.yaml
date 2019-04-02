@@ -8,8 +8,8 @@
         age: "90d"
         file_type: directory
       register: dirsOlderThan90d
-- name: archive
-  archive: 
-    path: "{{ item.path}}"
-    format: zip
+    - name: archive
+      archive: 
+        path: "{{ item.path}}"
+        format: zip
       
