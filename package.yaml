@@ -12,7 +12,7 @@
         
     - name: Install in ubuntu
       when: ansible_os_family == "Ubuntu"
-      package:
+      apt:
         name: "{{ item}}"
       with_items:
         - telnet
