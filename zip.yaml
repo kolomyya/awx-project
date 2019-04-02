@@ -1,0 +1,14 @@
+---
+- name: Do something
+  hosts: all
+  tasks:
+    - name: find
+      find:
+        path: :"tmp"
+        age: "90d"
+      register: dirsOlderThan90d  
+- name: archive
+  archive: 
+    path: "{{ item.path}}"
+    format: zip
+      
