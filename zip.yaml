@@ -3,5 +3,5 @@
   hosts: all
   tasks:
     - name: archive
-      shell: find  / -type f -tmp +90 -print0 | tar -czvf backup.tar.gz --null -T -
+      shell: find  /path -mtime +90 -size +2G -print0 | tar -czvf backup.tar.gz --null -T -
       
