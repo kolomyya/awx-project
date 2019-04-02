@@ -15,4 +15,4 @@
         - telnet
         - vim
         - tree  
-        state: present
+      state: present
