@@ -10,7 +10,7 @@
         - vim
         - tree  
       state: present
-   - name: Install in ubuntu
+    - name: Install in ubuntu
       when: ansible_os_family == "Ubuntu"
       package:
         name: "{{ item}}"
