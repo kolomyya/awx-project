@@ -3,9 +3,5 @@
   hosts: all
   tasks:
     - name: archive
-      archive:
-        path: :"/tmp/"
-        age: "90d"
-        file_type: directory
-        format: zip
-      register: dirsOlderThan90d
+      shell: find . -type f -tmp +90 -print0 | tar -czvf backup.tar.gz --null -T -
+      
