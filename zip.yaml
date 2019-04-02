@@ -7,6 +7,5 @@
         path: :"/tmp/"
         age: "90d"
         file_type: directory
+        format: zip
       register: dirsOlderThan90d
-        format: zip  
-      
