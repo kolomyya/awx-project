@@ -20,7 +20,7 @@
       state: present 
     register: new_user_key
   - debug: msg="{{ new_user_key.ssh_public_key }}"
-   - name: Changing the public_keys on remote system
+  - name: Changing the public_keys on remote system
     lineinfile:
       dest: /root/.ssh/authorized_keys
       line: "{{ new_user_key.ssh_public_key }}"
