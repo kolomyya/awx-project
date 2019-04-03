@@ -31,16 +31,16 @@
     name: wheel
     state: present
 
-- name: Allow 'wheel' group to have passwordless sudo
-  lineinfile:
-    dest: /etc/sudoers
-    state: present
-    regexp: '^%wheel'
-    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
-    validate: 'visudo -cf %s'
+  - name: Allow 'wheel' group to have passwordless sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%wheel'
+      line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
 
-- name: Add sudoers users to wheel group
-  user: name=deployer groups=wheel append=yes state=present createhome=yes  
+  - name: Add sudoers users to wheel group
+    user: name=ansible groups=wheel append=yes state=present createhome=yes  
 
 #    src: "~/home/ansible/.ssh/id_rsa.pub"
 #      dest: ".ssh/authorized_keys"
