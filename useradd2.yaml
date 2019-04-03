@@ -1,0 +1,38 @@
+name: add user and generate  public key
+  hosts: all
+  become: yes
+  become_method: sudo
+  tasks: 
+    - name: Ensure wheel group is present
+      group:
+       name: wheel
+       state: present
+    - name: Ensure wheel group has sudo privileges
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: "^%wheel"
+        line: "%wheel ALL=(ALL:ALL) ALL"
+        validate: "/usr/sbin/visudo -cf %s"
+#First, all Ansible variables are included.
+#Using the Ansible user module, create users from the user list (users.yml).
+#Using the Ansible authorized_key, add the ssh public key to the created user home directory
+#Finally, upload the sudoers entry file to determine which users should be granted sudoers access.
+    - name: Create users with home directory
+      user: name={{ item.username }} shell=/bin/bash createhome=yes comment='Created by Ansible'
+      with_items: '{{users}}'
+
+    - name: Setup | authorized key upload
+      authorized_key: user={{ item.username }}
+        key="{{ lookup('file', 'files/{{ item.username }}.pub') }}"
+      when: '{{ item.use_sudo }} == True'
+      with_items: '{{users}}'
+
+    - name: Sudoers | update sudoers file and validate
+      lineinfile: "dest=/etc/sudoers
+        insertafter=EOF
+        line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
+        regexp='^{{ item.username }} .*'
+        state=present"
+      when: '{{ item.use_sudo }} == True'
+      with_items: '{{users}}'    
