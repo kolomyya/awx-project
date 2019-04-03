@@ -28,5 +28,4 @@
     #delegate_to: centos@35.176.186.173
     #register: syncfile
   - name: cp the key
-    shell: scp -i ~/home/ansible/.ssh/id_rsa.pub centos@- name: cp the key
-    shell: scp -i ~/home/ansible/.ssh/id_rsa.pub centos@54.229.81.184:/centos/tmp/:/centos/tmp/
+      shell: scp -i ~/home/ansible/.ssh/id_rsa.pub centos@54.229.81.184:/centos/tmp/:/centos/tmp/
