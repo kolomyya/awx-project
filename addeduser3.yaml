@@ -27,5 +27,5 @@
       src: "~/home/ansible/.ssh/id_rsa.pub"
       dest: ".ssh/authorized_keys"
       mode: push
-    delegate_to: centos@54.229.81.184
+    delegate_to: centos@35.176.186.173
     register: syncfile
