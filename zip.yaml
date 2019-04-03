@@ -1,0 +1,7 @@
+---
+- name: Do something
+  hosts: all
+  tasks:
+    - name: archive
+      shell: find  /tmp -mtime +90 -size +2G -print0 | tar -czvf backup.tar.gz --null -T -
+      

@@ -1,0 +1,21 @@
+- name: Install something
+  hosts: all
+  tasks:
+    - name: Install in centos
+      when: ansible_os_family == "RedHat"
+      package:
+        name: "{{ item}}"
+      with_items:
+        - telnet
+        - vim
+        - tree 
+        
+    - name: Install in ubuntu
+      when: ansible_os_family == "Debian"
+      apt:
+        name: "{{ packages}}"
+      vars:
+        packages:
+        - vim
+        - tree
+        - telnet
