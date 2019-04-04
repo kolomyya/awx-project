@@ -1,0 +1,18 @@
+---
+- name: route53 test
+  hosts: localhost
+  tasks:
+    - route53:
+        state: present
+        zone: andzin.com
+        record: awx.andzin.com
+        type: A
+        ttl: "{{ttl}}"
+        value: "{{value}}"
+# You can  specify the following variables when prompted while launching the template   
+# state: present | absent | get | create | delete 
+# zone: The DNS zone to modify, e.g. example.com
+# record: The full DNS record to create or delete e.g. tower.example.com
+# type: A | CNAME | MX | AAAA | TXT | PTR | SRV | SPF | CAA | NS | SOA
+# ttl: The TTL to give the new record
+# value: The new value when creating a DNS record        
