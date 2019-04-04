@@ -1,0 +1,7 @@
+---
+- name: Create 2g file
+  ignore_errors: true
+  hosts: all
+  tasks:
+    - name: Create a file
+      shell: "dd if=/dev/zero  of=/tmp/file.txt  bs=2024M count=50"
