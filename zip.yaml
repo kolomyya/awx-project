@@ -2,6 +2,10 @@
 - name: Do something
   hosts: all
   tasks:
+    # - name: Install gzip
+    #   package:
+    #     name: gzip
+
     - name: archive
       shell: find  /tmp -mtime +90 -size +2G -print0 | tar -czvf backup.tar.gz --null -T -
-      
+      #shell: 'find  /tmp -size +2G 2>/dev/null  -name   "*.txt"  -exec gzip -v9 {} \;' 
