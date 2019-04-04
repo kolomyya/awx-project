@@ -8,6 +8,8 @@
       user:
         name: "{{ item }}"
         state: present
+  #     state: "{{state}}"
+  #     present| absent      
         generate_ssh_key: yes
       with_items:
         - ann
