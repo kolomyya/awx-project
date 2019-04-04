@@ -14,3 +14,10 @@
       systemd:
         name: httpd
         state: restarted
+
+    # - name: set the state of the service
+    #   systemd:
+    #     name: "{{service}}"
+    #     state: "{{state}}"    
+    # service: service name
+    # state: reloaded | restarted | started | stopped
