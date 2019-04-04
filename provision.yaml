@@ -1,0 +1,15 @@
+name: Provision Centos7
+  hosts: localhost
+  tasks:
+    - name: Launch CentOS7
+      ec2:
+        aws_region: eu-west-2a
+        image: ami-0eab3a90fc693af19
+        instance_type: t2.micro
+        instance_tags:
+          Name: CentOS7
+        count: 1
+        wait: yes
+        vpc_subnet_id: subnet-0e13b574
+        assign_public_ip: yes
+        key_name: mykey
