@@ -1,0 +1,26 @@
+---
+  - name: Backup MySQL-DB to Remote Backup-Server
+    hosts: "{{ dbhost }}"  #DB IP       
+    tasks:
+      - name: Ping
+        ping:
+
+      - name: Archive the DB
+        archive:
+          path: "/var/lib/mysql/{{ dbname }}"  #DB name
+          dest: /tmp/db{{ansible_date_time.date}}.tar.gz
+        notify: "start backup"
+
+    handlers:
+      - name: Send the file to Backup-Server
+        shell: "scp /tmp/db*.tar.gz {{ backuphost }}:/{{ backupfolder }}/" #backuphost and backupfolder
+        listen: "start backup"
+        
+# 1. Ping the host 
+# 2. Archive the database under /tmp and time-stamp the file name
+# 3. Once the archive is done, sends the file to backupserver, to a specified folder. 
+# You need to provide the following variables. 
+# dbhost:
+# dbname:
+# backuphost: 
+# backupfolder:
